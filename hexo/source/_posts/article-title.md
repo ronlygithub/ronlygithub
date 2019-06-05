@@ -16,6 +16,37 @@ Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [docume
 }
 ```
 
+```java
+public class XxlSsoUser extends Model<XxlSsoUser> {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 用户ID
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
+    /**
+     * 用户名
+     */
+    private String username;
+
+    /**
+     * 密码
+     */
+    private String password;
+
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
+}
+
+```
+
 ``` bash
 $ hexo new "My New Posts"
 ```
