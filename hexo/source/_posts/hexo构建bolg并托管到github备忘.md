@@ -6,21 +6,35 @@ categories: 工具
 ---
 
 近几天使用hexo及github搭建了个人blog，现将流程记录下来以作备忘。
+<<<<<<< HEAD
 # 准备工作
   ## Hexo
   ### Hexo是什么 
+=======
+### 准备工作
+  #### Hexo
+  ##### Hexo是什么 
+>>>>>>> f0f490394fe66d312582664601b3d4f6d4322f33
   Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
   - 支持Markdown，无需关注页面排版
   - 超快速度，Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。
   - 一键部署，只需一条指令即可部署到 GitHub Pages, Heroku 或其他网站。
   - 插件丰富，Hexo 拥有强大的插件系统，安装插件可以让 Hexo 支持 Jade, CoffeeScript。
+<<<<<<< HEAD
 ### Hexo 安装
+=======
+##### Hexo 安装
+>>>>>>> f0f490394fe66d312582664601b3d4f6d4322f33
   安装前请确保本地已安装Git及Nodejs.
 
   执行以下命令，安装Hexo：
   `npm install -g hexo-cli`
 
+<<<<<<< HEAD
 ### 本地部署
+=======
+##### 本地部署
+>>>>>>> f0f490394fe66d312582664601b3d4f6d4322f33
 将`<folder>` 替换为本地储存Blog相关资源的文件夹名称，进行初始化。
 ``` 
     hexo init <folder>
@@ -38,6 +52,7 @@ categories: 工具
     ├── source
     └── themes
 ```
+<<<<<<< HEAD
 #### 编译生成静态文件
 ```
 hexo generate 或 hexo g
@@ -53,6 +68,8 @@ hexo server 或 hexo s
  ```
  hexo clean
  ```
+=======
+>>>>>>> f0f490394fe66d312582664601b3d4f6d4322f33
 
 
 
