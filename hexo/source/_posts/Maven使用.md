@@ -5,8 +5,26 @@ tags: maven
 categories: 工具
 ---
 
+
+
 ## Maven 常用命令
-### 部署私服
+
+### 常用参数
+
+- -D 指定参数，如 -Dmaven.test.skip=true 跳过单元测试；
+
+- -P 指定 Profile 配置，可以用于区分环境；
+
+- -e 显示maven运行出错的信息；
+
+- -o 离线执行命令,即不去远程仓库更新包；
+
+- -X 显示maven允许的debug信息；
+
+- -U 强制去远程更新snapshot的插件或依赖，默认每天只更新一次。
+
+
+### 部署远程仓库
 ```
 mvn clean deploy -U -am -pl 模块名称
 ```
