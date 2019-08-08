@@ -18,3 +18,10 @@ mvn clean deploy -U -am -pl 模块名称
 ```
 mvn -N version:update-child-modules
 ```
+
+
+### 跳过测试
+```
+mvn compile -Dmaven.test.skip=true
+```
+
