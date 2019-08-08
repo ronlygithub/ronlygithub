@@ -30,11 +30,15 @@ mvn clean deploy -U -am -pl 模块名称
 ```
 
 ### 版本更新
-- 修改父pom中版本号
-- 执行如下命令将子模块版本号与父pom中保持一致
+- 修改子模块版本号与父pom中保持一致
 
 ```
 mvn -N version:update-child-modules
+```
+- 同时修改父模块与子模块版本号
+
+```
+mvn versions:set -DnewVersion=0.0.2-SNAPSHOT
 ```
 
 
