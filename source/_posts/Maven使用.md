@@ -33,7 +33,7 @@ mvn clean deploy -U -am -pl 模块名称
 - 修改子模块版本号与父pom中保持一致
 
 ```
-mvn -N version:update-child-modules
+mvn -N versions:update-child-modules
 ```
 - 同时修改父模块与子模块版本号
 
