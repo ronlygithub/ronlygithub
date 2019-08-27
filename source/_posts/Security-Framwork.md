@@ -26,8 +26,22 @@ Apache Shiro 是一个灵活且功能丰富的开源安全框架，支持鉴权�
 - Remember Me：在session中保存用户身份信息
 
 ## Apache Shiro Architecture
+Shiro 以简单易用，符合直觉为设计目标，主要关心`谁`在于应用系统进行`什么`交互。
+Shiro 的架构中涉及三个主要的概念：
+- Subject(主体): subject指当前与系统进行交互的用户，可以是人、第三方服务、定时任务等
+- 
 
+![features](./Security-Framwork/ShiroBasicArchitecture.png)
 
 
 ## 参考
 [Apache Shiro Architecture](http://shiro.apache.org/architecture.html)
+
+
+其他安全框架
+- Spring security
+- Apache Fortress
+- Apache Kerby
+- Apache Santuario
+- Apache Syncope
+
