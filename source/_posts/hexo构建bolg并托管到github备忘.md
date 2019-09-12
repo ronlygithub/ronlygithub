@@ -7,8 +7,7 @@ categories: 工具
 
 近几天使用hexo及github搭建了个人blog，现将流程记录下来以作备忘。
 
-# 准备工作
-  ## Hexo
+
   ### Hexo是什么 
   Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
   - 支持Markdown，无需关注页面排版
@@ -59,8 +58,89 @@ hexo server 或 hexo s
  hexo clean
  ```
 
+ #### 构建并部署到GitHub Pages
+ ```
+ hexo g -d
+ ```
+
  ### 将Blog 关联到GitHub Pages
  #### 创建远程仓库: `<githubUserName>.github.io`，将`<githubUserName>`替换为你的github账号。远程仓库命名必须遵循此格式，否则无法访问。
+
+### 文章中展示图片
+#### 安装插件：
+```
+npm install hexo-asset-image --save
+```
+#### 替换 JS 代码
+将 `node_modules\hexo-asset-image\index.js` 文件中内容替换为如下代码:
+```js
+'use strict';
+var cheerio = require('cheerio');
+
+// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-string
+function getPosition(str, m, i) {
+  return str.split(m, i).join(m).length;
+}
+
+var version = String(hexo.version).split('.');
+hexo.extend.filter.register('after_post_render', function (data) {
+  var config = hexo.config;
+  if (config.post_asset_folder) {
+    var link = data.permalink;
+    if (version.length > 0 && Number(version[0]) == 3)
+      var beginPos = getPosition(link, '/', 1) + 1;
+    else
+      var beginPos = getPosition(link, '/', 3) + 1;
+    // In hexo 3.1.1, the permalink of "about" page is like ".../about/index.html".
+    var endPos = link.lastIndexOf('/') + 1;
+    link = link.substring(beginPos, endPos);
+
+    var toprocess = ['excerpt', 'more', 'content'];
+    for (var i = 0; i < toprocess.length; i++) {
+      var key = toprocess[i];
+
+      var $ = cheerio.load(data[key], {
+        ignoreWhitespace: false,
+        xmlMode: false,
+        lowerCaseTags: false,
+        decodeEntities: false
+      });
+
+      $('img').each(function () {
+        if ($(this).attr('src')) {
+          // For windows style path, we replace '\' to '/'.
+          var src = $(this).attr('src').replace('\\', '/');
+          if (!/http[s]*.*|\/\/.*/.test(src) &&
+            !/^\s*\//.test(src)) {
+            // For "about" page, the first part of "src" can't be removed.
+            // In addition, to support multi-level local directory.
+            var linkArray = link.split('/').filter(function (elem) {
+              return elem != '';
+            });
+            var srcArray = src.split('/').filter(function (elem) {
+              return elem != '' && elem != '.';
+            });
+            if (srcArray.length > 1)
+              srcArray.shift();
+            src = srcArray.join('/');
+            $(this).attr('src', config.root + link + src);
+            console.info && console.info("update link as:-->" + config.root + link + src);
+          }
+        } else {
+          console.info && console.info("no src attr, skipped...");
+          console.info && console.info($(this));
+        }
+      });
+      data[key] = $.html();
+    }
+  }
+});
+
+```
+
+#### MarkDown语法插入图片
+`![示例图片](./images/image.png)`
+
     
 
 
